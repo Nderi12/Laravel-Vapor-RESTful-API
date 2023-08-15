@@ -1,0 +1,12 @@
+id: 51051
+name: tradlerapp
+environments:
+    production:
+        memory: 1024
+        cli-memory: 512
+        runtime: 'php-8.2:al2'
+        build:
+            - 'composer install'
+            - 'php artisan event:cache'
+            - 'php artisan l5-swagger:generate'
+            - 'npm install && npm run build && rm -rf node_modules'

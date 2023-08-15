@@ -162,14 +162,14 @@
                 }
             }
         },
-        "/api/posts": {
+        "/api/users": {
             "get": {
                 "tags": [
-                    "Posts"
+                    "Users"
                 ],
-                "summary": "Get list of Posts",
-                "description": "Returns list of posts",
-                "operationId": "getPostsList",
+                "summary": "Get list of Users",
+                "description": "Returns list of users",
+                "operationId": "getUsersList",
                 "responses": {
                     "200": {
                         "description": "Successful operation",
@@ -177,7 +177,7 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "posts": {
+                                        "users": {
                                             "collectionFormat": "multi"
                                         }
                                     },
@@ -187,62 +187,73 @@
                         }
                     },
                     "404": {
-                        "description": "Posts not found"
+                        "description": "Users not found"
                     }
                 }
-            }
-        },
-        "/api/post/create": {
+            },
             "post": {
                 "tags": [
-                    "Posts"
+                    "Users"
                 ],
-                "summary": "Create a new post",
-                "operationId": "83ca41b942028bde6d7abc0d3c6e3bef",
+                "summary": "Create a new user",
+                "description": "Create a new user with the specified details",
+                "operationId": "592819a0265360b2014512d6dbfaf0e7",
                 "requestBody": {
+                    "description": "Fields needed to register a new user",
+                    "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
                                 "properties": {
                                     "name": {
-                                        "oneOf": [
-                                            {
-                                                "type": "string"
-                                            },
-                                            {
-                                                "type": "integer"
-                                            }
-                                        ]
+                                        "type": "string",
+                                        "example": "John Doe"
                                     },
-                                    "metadata": {
-                                        "oneOf": [
-                                            {
-                                                "type": "json"
-                                            },
-                                            {
-                                                "type": "integer"
-                                            }
-                                        ]
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "minLength": 8,
+                                        "example": "secretpassword"
+                                    },
+                                    "confirm_password": {
+                                        "type": "string",
+                                        "example": "secretpassword"
                                     }
                                 },
-                                "type": "object",
-                                "example": {
-                                    "title": "Post Name"
-                                }
+                                "type": "object"
                             }
                         }
                     }
                 },
                 "responses": {
-                    "201": {
-                        "description": "Post created successfully",
+                    "200": {
+                        "description": "User registered successfully",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
                                         "message": {
-                                            "description": "A message indicating that the post was created successfully.",
-                                            "type": "string"
+                                            "type": "string",
+                                            "example": "Successfully registered."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors encountered during registration",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object"
                                         }
                                     },
                                     "type": "object"
@@ -253,18 +264,18 @@
                 }
             }
         },
-        "/api/post/{id}": {
+        "/api/user/{id}": {
             "get": {
                 "tags": [
-                    "Posts"
+                    "Users"
                 ],
-                "summary": "Get a single post by id",
-                "operationId": "239ae40d24d82380dd09557f9614ad9e",
+                "summary": "Get a single user by id",
+                "operationId": "d8f696420bea235f4916124c9ba1c507",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of the post to get",
+                        "description": "id of the user to get",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -279,7 +290,7 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "post": {}
+                                        "user": {}
                                     },
                                     "type": "object"
                                 }
@@ -287,21 +298,21 @@
                         }
                     },
                     "404": {
-                        "description": "Post not found"
+                        "description": "User not found"
                     }
                 }
             },
             "put": {
                 "tags": [
-                    "Posts"
+                    "Users"
                 ],
-                "summary": "Update a post",
-                "operationId": "810f728ecb4e0ff17868cb92df339718",
+                "summary": "Update a user",
+                "operationId": "5e09c26a0abb2b1bf040badb2d9c69ba",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "The id of the post to update",
+                        "description": "The id of the user to update",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -337,7 +348,7 @@
                                 },
                                 "type": "object",
                                 "example": {
-                                    "name": "Post Name"
+                                    "name": "User Name"
                                 }
                             }
                         }
@@ -345,24 +356,24 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Post updated successfully"
+                        "description": "User updated successfully"
                     },
                     "404": {
-                        "description": "Post not found"
+                        "description": "User not found"
                     }
                 }
             },
             "delete": {
                 "tags": [
-                    "Posts"
+                    "Users"
                 ],
-                "summary": "Delete a post",
-                "operationId": "6d25b4d3f1749560f4d0d0ae67e41858",
+                "summary": "Delete a user",
+                "operationId": "f8d7aea516ee464d0afee90f3a1a1722",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "The id of the post to delete",
+                        "description": "The id of the user to delete",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -372,10 +383,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Post deleted successfully"
+                        "description": "User deleted successfully"
                     },
                     "404": {
-                        "description": "Post not found"
+                        "description": "User not found"
                     }
                 }
             }
