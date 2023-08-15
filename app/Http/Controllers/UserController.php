@@ -115,7 +115,7 @@ class UserController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/user/{id}",
+     *     path="/api/users/{id}",
      *     summary="Get a single user by id",
      *     tags={"Users"},
      *     @OA\Parameter(
@@ -156,7 +156,7 @@ class UserController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/api/user/{id}",
+     *     path="/api/users/{id}",
      *     summary="Update a user",
      *     tags={"Users"},
      *     @OA\Parameter(
@@ -227,7 +227,7 @@ class UserController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/user/{id}",
+     *     path="/api/users/{id}",
      *     summary="Delete a user",
      *     tags={"Users"},
      *     @OA\Parameter(

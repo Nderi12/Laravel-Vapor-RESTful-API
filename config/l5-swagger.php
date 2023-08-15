@@ -77,7 +77,7 @@ return [
             /*
              * Absolute path to location where parsed annotations will be stored
             */
-            'docs' => '/tmp/storage/api-docs',
+            'docs' => base_path('resources/views/vendor/l5-swagger'),
 
             /*
              * Absolute path to directory where to export views

@@ -19,21 +19,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ URL::asset('assets/img/apple-icon.png') }}">
+    <link rel="icon" type="image/png" href="{{ URL::asset('assets/img/favicon.png') }}">
     <title>
         Tradler App
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
-    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="{{ URL::asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
+    <link href="{{ URL::asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="{{ URL::asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
     <!-- CSS Files -->
-    <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+    <link id="pagestyle" href="{{ URL::asset('assets/css/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -44,9 +44,8 @@
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
+            <a class="navbar-brand m-0" href="href="{{ route('home') }}""
                 target="_blank">
-                <img src="../assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold">Tradler App</span>
             </a>
         </div>
@@ -94,14 +93,14 @@
         </div>
     </main>
     <!--   Core JS Files   -->
-    <script src="../assets/js/core/popper.min.js"></script>
-    <script src="../assets/js/core/bootstrap.min.js"></script>
-    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="{{ URL::asset('assets/js/core/popper.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/core/bootstrap.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+    <script src="{{ URL::asset('assets/js/argon-dashboard.min.js?v=2.0.4') }}"></script>
 </body>
 
 </html>
