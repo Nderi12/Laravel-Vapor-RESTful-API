@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendEmailJob;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -102,6 +104,8 @@ class UserController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password), // Hash password
             ]);
+
+            dispatch(new SendEmailJob($request->email));
         });
 
         return response()->json([
@@ -199,7 +203,6 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        dd($request->all());
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email',
