@@ -19,7 +19,7 @@ The project above allows for user to: List, Get, Create, Update and Delete Users
 
 # Laravel Vapor RESTful API Project
 
-This repository contains a RESTful API project built with Laravel and utilizes Redis for queue management to process background jobs. The application is deployed using Laravel Vapor on the AWS infrastructure. The API endpoints provided include user-related functionalities, and MySQL is used as the database to store user data.
+This repository contains a RESTful API project built with https://laravel.com/ and utilizes https://redis.io/ for queue management to process background jobs. The application is deployed using https://vapor.laravel.com/ on the https://aws.amazon.com/. The API endpoints provided include user-related functionalities, and MySQL is used as the database to store user data.
 
 ## Installation
 
@@ -122,7 +122,7 @@ https://{{base_url}}/api/documentation
 
 ## Laravel Vapor Deployment
 
-This project is deployed using Laravel Vapor on the AWS infrastructure. Follow these steps to deploy the application using Laravel Vapor:
+This project is deployed using https://vapor.laravel.com/ on the AWS infrastructure. Follow these steps to deploy the application using Laravel Vapor:
 
 1. **AWS Setup:**
 
