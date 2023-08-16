@@ -1,3 +1,22 @@
+# Deployed Project on Laravel Vapor on an AWS infrastructure
+*Project URL*: https://ei5czcnukfdljefgeiqwmjgygq0utyvh.cell-1-lambda-url.us-east-1.on.aws/login
+*Email*: admin@demo.com
+*Password*: password
+
+*Swagger APIs Documentation*: https://ei5czcnukfdljefgeiqwmjgygq0utyvh.cell-1-lambda-url.us-east-1.on.aws/api/documentation
+
+The project above allows for user to: List, Get, Create, Update and Delete Users using api endpoints below
+
+**API Endpoints**
+```sh
+    - `GET /users`: Returns a list of all users.
+    - `GET /users/{id}`: Returns a specific user by ID.
+    - `POST /users`: Creates a new user.
+    - `PUT /users/{id}`: Updates an existing user by ID.
+    - `DELETE /users/{id}`: Deletes a user by ID.
+```
+
+
 # Laravel Vapor RESTful API Project
 
 This repository contains a RESTful API project built with Laravel and utilizes Redis for queue management to process background jobs. The application is deployed using Laravel Vapor on the AWS infrastructure. The API endpoints provided include user-related functionalities, and MySQL is used as the database to store user data.
@@ -140,16 +159,6 @@ This project is deployed using Laravel Vapor on the AWS infrastructure. Follow t
 
    - Deploy the application again using `vapor deploy specify_environment`.
    - Access the API documentation at the URL: `https://{{project_url}}/api/documentation`.
-
-## API Endpoints
-
-This project provides the following RESTful API endpoints:
-
-- `GET /users`: Returns a list of all users.
-- `GET /users/{id}`: Returns a specific user by ID.
-- `POST /users`: Creates a new user.
-- `PUT /users/{id}`: Updates an existing user by ID.
-- `DELETE /users/{id}`: Deletes a user by ID.
 
 ## Further Notes
 
