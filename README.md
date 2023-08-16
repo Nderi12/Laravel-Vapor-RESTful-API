@@ -1,67 +1,159 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Vapor RESTful API Project
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This repository contains a RESTful API project built with Laravel and utilizes Redis for queue management to process background jobs. The application is deployed using Laravel Vapor on the AWS infrastructure. The API endpoints provided include user-related functionalities, and MySQL is used as the database to store user data.
 
-## About Laravel
+## Installation
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Follow these steps to set up and install the project locally:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. Clone the repository from GitHub:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+   ```sh
+   git clone https://github.com/Nderi12/Laravel-Vapor-RESTful-API.git
+   ```
 
-## Learning Laravel
+2. Install the project dependencies:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+   ```sh
+   composer install
+   ```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+3. Create a new `.env` file:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+   ```sh
+   cp .env.example .env
+   ```
 
-## Laravel Sponsors
+4. Generate a new application key:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+   ```sh
+   php artisan key:generate
+   ```
 
-### Premium Partners
+5. Create a new MySQL database and update the `.env` file with the database credentials:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+   ```dotenv
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=your_database_name
+   DB_USERNAME=your_database_username
+   DB_PASSWORD=your_database_password
+   ```
 
-## Contributing
+6. Run the database migrations:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+   ```sh
+   php artisan migrate
+   ```
 
-## Code of Conduct
+## Configure Redis for Queue Management:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. Update the `.env` file to use Redis as the queue driver:
 
-## Security Vulnerabilities
+   ```dotenv
+   QUEUE_CONNECTION=redis
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   Start the Redis server using the command:
 
-## License
+   ```sh
+   sudo service redis-server start
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# Laravel-Vapor-RESTful-API
+2. Configure SMTP settings for sending emails:
+
+   Open the `.env` file and update the following SMTP settings:
+
+   ```dotenv
+   MAIL_MAILER=smtp
+   MAIL_HOST=your-smtp-host
+   MAIL_PORT=your-smtp-port
+   MAIL_USERNAME=your-smtp-username
+   MAIL_PASSWORD=your-smtp-password
+   MAIL_ENCRYPTION=ssl
+   ```
+
+3. Start the Queue Worker:
+
+   Run the following command to start processing background jobs:
+
+   ```sh
+   php artisan queue:work
+   ```
+
+## Testing API
+
+Run the laravel tests:
+
+```
+php artisan test
+```
+
+## Documentation
+
+The Swagger OpenAPIs documentation is available at:
+
+```
+https://{{base_url}}/api/documentation
+
+```
+
+## Laravel Vapor Deployment
+
+This project is deployed using Laravel Vapor on the AWS infrastructure. Follow these steps to deploy the application using Laravel Vapor:
+
+1. **AWS Setup:**
+
+   - Navigate to your AWS security credentials and get the Access Key ID and Secret Access Key.
+
+2. **Laravel Vapor Setup:**
+
+   - Create a team in your Laravel Vapor account.
+   - Link your AWS account with Vapor by providing the Access Key ID and Secret Access Key.
+
+3. **In the Laravel Project:**
+
+   - Run the command `vapor login` and provide your Vapor account credentials.
+
+4. **Initializing Vapor Project:**
+
+   - Run the command below to configure the project settings, select your region, and install the core package (if not already installed). This will generate the `vapor.yaml` file in the root directory.
+   
+    ```sh
+    vapor init
+    ```
+
+5. **Adding Database:**
+
+   - Run the command `vapor database my-test-database --dev` to create a public development database.
+   - Update the `vapor.yaml` database hook with the appropriate database name.
+
+6. **Deployment:**
+
+   - Run the command `vapor deploy specify_environment` to deploy your application to AWS Lambda and frontend assets to CloudFront (AWS CDN).
+   - After a successful deploy, obtain the Environment URL and update the `.env` file's `L5_SWAGGER_CONST_HOST` variable.
+
+7. **Accessing API Documentation:**
+
+   - Deploy the application again using `vapor deploy specify_environment`.
+   - Access the API documentation at the URL: `https://{{project_url}}/api/documentation`.
+
+## API Endpoints
+
+This project provides the following RESTful API endpoints:
+
+- `GET /users`: Returns a list of all users.
+- `GET /users/{id}`: Returns a specific user by ID.
+- `POST /users`: Creates a new user.
+- `PUT /users/{id}`: Updates an existing user by ID.
+- `DELETE /users/{id}`: Deletes a user by ID.
+
+## Further Notes
+
+- The project utilizes Laravel Vapor for efficient deployment on AWS infrastructure.
+- Redis is used for queue management to process background jobs.
+- MySQL is used to store user data.
+- The `.env` file must be properly configured with the necessary environment-specific values.
+
+For any additional information or support, please refer to the official Laravel and Laravel Vapor documentation.
