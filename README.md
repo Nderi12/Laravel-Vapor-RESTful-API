@@ -1,7 +1,9 @@
 # Deployed Project on Laravel Vapor on an AWS infrastructure
-*Project URL*: https://ei5czcnukfdljefgeiqwmjgygq0utyvh.cell-1-lambda-url.us-east-1.on.aws/login
-*Email*: admin@demo.com
-*Password*: password
+**Project URL**: https://ei5czcnukfdljefgeiqwmjgygq0utyvh.cell-1-lambda-url.us-east-1.on.aws/login
+
+**Email**: admin@demo.com
+
+**Password**: password
 
 *Swagger APIs Documentation*: https://ei5czcnukfdljefgeiqwmjgygq0utyvh.cell-1-lambda-url.us-east-1.on.aws/api/documentation
 
