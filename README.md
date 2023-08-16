@@ -49,6 +49,8 @@ Follow these steps to set up and install the project locally:
 
 ## Configure Redis for Queue Management:
 
+In this project, we intend to send every new user an invitation. The process will be handled using laravel’s package https://github.com/predis/predis. The project is configured to use redis as our queue worker
+
 1. Update the `.env` file to use Redis as the queue driver:
 
    ```dotenv
