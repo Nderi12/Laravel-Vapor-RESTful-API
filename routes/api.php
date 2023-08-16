@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/registerUser', [AuthController::class, 'register']);
-Route::post('/loginUser', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
 // Route::group(['middleware' => 'auth:api'], function(){
     Route::resource('users', UserController::class)->only('index', 'store', 'show', 'update', 'destroy');
